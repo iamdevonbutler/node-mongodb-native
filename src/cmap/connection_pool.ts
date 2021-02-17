@@ -18,7 +18,7 @@ import {
   ConnectionCheckedInEvent,
   ConnectionPoolClearedEvent
 } from './events';
-import type { Document } from '../bson';
+import type { Document, ObjectId } from '../bson';
 
 const kLogger = Symbol('logger');
 const kConnections = Symbol('connections');
@@ -271,6 +271,11 @@ export class ConnectionPool extends EventEmitter {
     this.emit('connectionPoolCleared', new ConnectionPoolClearedEvent(this));
   }
 
+  // TODO: Durran: Close all connections for a specific server id.
+  closeConnnections(serverId: ObjectId): void {
+
+  }
+
   /** Close the pool */
   close(callback: Callback<void>): void;
   close(options: CloseOptions, callback: Callback<void>): void;
@@ -410,6 +415,7 @@ function connectionIsIdle(pool: ConnectionPool, connection: Connection) {
   return !!(pool.options.maxIdleTimeMS && connection.idleTime > pool.options.maxIdleTimeMS);
 }
 
+// TODO: Durran: In LB mode set the server id on the connection.
 function createConnection(pool: ConnectionPool, callback?: Callback<Connection>) {
   const connectOptions: ConnectionOptions = {
     ...pool.options,
