@@ -13,7 +13,8 @@ import {
   isRecord,
   makeClientMetadata,
   setDifference,
-  HostAddress
+  HostAddress,
+  emitWarning
 } from './utils';
 import type { Document } from './bson';
 import {
@@ -446,7 +447,7 @@ function setOption(
 
   if (deprecated) {
     const deprecatedMsg = typeof deprecated === 'string' ? `: ${deprecated}` : '';
-    console.warn(`${key} is a deprecated option${deprecatedMsg}`);
+    emitWarning(`${key} is a deprecated option${deprecatedMsg}`);
   }
 
   switch (type) {
@@ -706,7 +707,7 @@ export const OPTIONS = {
       if (value instanceof Logger) {
         return value;
       }
-      console.warn('Alternative loggers might not be supported');
+      emitWarning('Alternative loggers might not be supported');
       // TODO: make Logger an interface that others can implement, make usage consistent in driver
       // DRIVERS-1204
     }
@@ -967,10 +968,6 @@ export const OPTIONS = {
       }
       return tlsInsecure;
     }
-  },
-  useRecoveryToken: {
-    default: true,
-    type: 'boolean'
   },
   w: {
     target: 'writeConcern',

@@ -73,6 +73,37 @@ export {
   GridFSBucket
 };
 
+// events
+export {
+  CommandStartedEvent,
+  CommandSucceededEvent,
+  CommandFailedEvent,
+  ConnectionCheckOutFailedEvent,
+  ConnectionCheckOutStartedEvent,
+  ConnectionCheckedInEvent,
+  ConnectionCheckedOutEvent,
+  ConnectionClosedEvent,
+  ConnectionCreatedEvent,
+  ConnectionPoolClearedEvent,
+  ConnectionPoolClosedEvent,
+  ConnectionPoolCreatedEvent,
+  ConnectionPoolMonitoringEvent,
+  ConnectionReadyEvent
+} from './cmap/events';
+export {
+  ServerHeartbeatStartedEvent,
+  ServerHeartbeatSucceededEvent,
+  ServerHeartbeatFailedEvent,
+  ServerClosedEvent,
+  ServerDescriptionChangedEvent,
+  ServerOpeningEvent,
+  TopologyClosedEvent,
+  TopologyDescriptionChangedEvent,
+  TopologyOpeningEvent
+} from './sdam/events';
+export { SrvPollingEvent } from './sdam/srv_polling';
+
+// type only exports below, these are removed from emitted JS
 export type { AdminPrivate } from './admin';
 export type { Instrumentation } from './apm';
 export type { Document, BSONSerializeOptions } from './bson';
@@ -175,7 +206,7 @@ export type {
   SupportedTLSSocketOptions,
   SupportedSocketOptions
 } from './mongo_client';
-export type { AddUserOptions } from './operations/add_user';
+export type { AddUserOptions, RoleSpecification } from './operations/add_user';
 export type {
   AggregateOptions,
   AggregateOperation,
@@ -246,7 +277,6 @@ export type {
   HedgeOptions
 } from './read_preference';
 export type { ClusterTime, ServerType, TimerQueue, TopologyType } from './sdam/common';
-export type { TopologyDescriptionChangedEvent } from './sdam/events';
 export type {
   Monitor,
   MonitorPrivate,
@@ -262,7 +292,7 @@ export type {
   ServerDescriptionOptions
 } from './sdam/server_description';
 export type { ServerSelector } from './sdam/server_selection';
-export type { SrvPoller, SrvPollingEvent, SrvPollerOptions } from './sdam/srv_polling';
+export type { SrvPoller, SrvPollerOptions } from './sdam/srv_polling';
 export type {
   Topology,
   TopologyPrivate,
